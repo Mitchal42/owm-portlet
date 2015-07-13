@@ -1,0 +1,141 @@
+<?xml version="1.0"?>
+
+<f:view
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+>
+	<h:head />
+	<h:body>
+		<p:panelGrid id="current" rendered="#{weatherPortlet.currentMode}">
+            <p:row>
+                <p:column colspan="2">
+                    <b>
+                        <h:outputFormat value="{0} ">
+                            <f:param value="#{i18n['currentmode']}"/>
+                        </h:outputFormat>
+                        <a href="http://www.openweathermap.org/city/#{weatherPortlet.CW.sysInstance.id}">
+                            <h:outputFormat value="{0}, {1}">
+                                <f:param value="#{weatherPortlet.CW.cityName}"/>
+                                <f:param value="#{weatherPortlet.CW.sysInstance.countryCode}"/>
+                            </h:outputFormat>
+                        </a>
+                    </b>
+                </p:column>
+            </p:row>
+            <p:row>
+                <p:column>
+                    <p:graphicImage value="#{weatherPortlet.CW.getWeatherInstance(0).weatherIconName}" />
+                    <h:outputFormat value="{0}{1}">
+                        <f:param value="#{weatherPortlet.CW.mainInstance.temperature}"/>
+                        <f:param value="#{weatherPortlet.unitString}"/>
+                    </h:outputFormat>
+                </p:column>
+                <p:column>
+                    <h:outputText value="#{weatherPortlet.CW.getWeatherInstance(0).weatherName}"/>
+                </p:column>
+                </p:row>
+            <p:row rendered="#{weatherPortlet.renderedWind}">
+                <p:column>
+                    <h:outputText value="#{i18n['wind']}"/>
+                </p:column>
+                <p:column>
+                    <h:outputFormat value="{0} {1} {2}">
+                        <f:param value="#{weatherPortlet.CW.windInstance.windSpeed}"/>
+                        <f:param value="#{i18n['m-s']}"/>
+                        <f:param value="#{weatherPortlet.convertDegree2Direction(weatherPortlet.CW.windInstance.windDegree)}"/>
+                    </h:outputFormat>
+                </p:column>
+            </p:row>
+            <p:row rendered="#{weatherPortlet.renderedCloudiness}">
+                <p:column>
+                    <h:outputText value="#{i18n['cloudiness']}"/>
+                </p:column>
+                <p:column>
+                    <h:outputFormat value="{0}">
+                        <f:param value="#{i18n[weatherPortlet.CW.getWeatherInstance(0).weatherCode]}"/>
+                    </h:outputFormat>
+                </p:column>
+            </p:row>
+            <p:row rendered="#{weatherPortlet.renderedPressure}">
+                <p:column>
+                    <h:outputText value="#{i18n['pressure']}"/>
+                </p:column>
+                <p:column>
+                    <h:outputFormat value="{0} {1}">
+                        <f:param value="#{weatherPortlet.CW.mainInstance.pressure}"/>
+                        <f:param value="#{i18n['hpa']}"/>
+                    </h:outputFormat>
+                </p:column>
+            </p:row>
+            <p:row rendered="#{weatherPortlet.renderedHumidity}">
+                <p:column>
+                    <h:outputText value="#{i18n['humidity']}"/>
+                </p:column>
+                <p:column>
+                    <h:outputFormat value="{0} %">
+                        <f:param value="#{weatherPortlet.CW.mainInstance.humidity}"/>
+                    </h:outputFormat>
+                </p:column>
+            </p:row>
+            <p:row rendered="#{weatherPortlet.renderedRain}">
+                <p:column>
+                    <h:outputText value="#{i18n['rain']}"/>
+                </p:column>
+                <p:column>
+                    <h:outputFormat value="{0} {1}">
+                        <f:param value="#{weatherPortlet.CW.rainInstance.rain1h}"/>
+                        <f:param value="#{i18n['mm']}"/>
+                    </h:outputFormat>
+                </p:column>
+            </p:row>
+            <p:row rendered="#{weatherPortlet.renderedSnow}">
+                <p:column>
+                    <h:outputText value="#{i18n['snow']}"/>
+                </p:column>
+                <p:column>
+                    <h:outputFormat value="{0} {1}">
+                        <f:param value="#{weatherPortlet.CW.snowInstance.snow1h}"/>
+                        <f:param value="#{i18n['mm']}"/>
+                    </h:outputFormat>
+                </p:column>
+            </p:row>
+            <p:row rendered="#{weatherPortlet.renderedSunriseSunset}">
+                <p:column>
+                    <h:outputText value="#{i18n['sunrise']}"/>
+                </p:column>
+                <p:column>
+                    <h:outputFormat value="{0}">
+                        <f:param value="#{weatherPortlet.convertDateTime2CurrentTimeZone(weatherPortlet.CW.sysInstance.sunriseTime)}"/>
+                    </h:outputFormat>
+                </p:column>
+            </p:row>
+            <p:row rendered="#{weatherPortlet.renderedSunriseSunset}">
+                <p:column>
+                    <h:outputText value="#{i18n['sunset']}"/>
+                </p:column>
+                <p:column>
+                    <h:outputFormat value="{0}">
+                        <f:param value="#{weatherPortlet.convertDateTime2CurrentTimeZone(weatherPortlet.CW.sysInstance.sunsetTime)}"/>
+                    </h:outputFormat>
+                </p:column>
+            </p:row>
+            <p:row rendered="#{weatherPortlet.renderedGeocoord}">
+                <p:column>
+                    <h:outputText value="#{i18n['geocoords']}"/>
+                </p:column>
+                <p:column>
+                    <a href="http://www.openweathermap.org/Maps?zoom=12&amp;lat=#{weatherPortlet.CW.coordInstance.latitude}&amp;lon=#{weatherPortlet.CW.coordInstance.longitude}">
+                        <h:outputFormat value="[{0} {1}]">
+                            <f:param value="#{weatherPortlet.CW.coordInstance.longitude}"/>
+                            <f:param value="#{weatherPortlet.CW.coordInstance.latitude}"/>
+                        </h:outputFormat>
+                    </a>
+                </p:column>
+            </p:row>
+		</p:panelGrid>
+	</h:body>
+</f:view>

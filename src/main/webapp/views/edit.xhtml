@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+
+<f:view
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:c="http://java.sun.com/jsp/jstl/core"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        >
+    <h:head/>
+    <h:body>
+        <h:form>
+            <p:messages for="messages" showDetail="true" autoUpdate="true"/>
+
+            <p:panelGrid columns="2">
+                <f:facet name="header">
+                    #{i18n['preferences']}
+                </f:facet>
+
+                <p:outputLabel value="#{i18n['modeOfView']}" for="modeOfView"/>
+                <h:selectOneMenu id="modeOfView" value="#{preferencesBean.modeOfView}">
+                    <f:selectItem itemLabel="#{i18n['currentWeather']}" itemValue="1"/>
+                    <f:selectItem itemLabel="#{i18n['hourlyForecast']}" itemValue="2"/>
+                    <f:selectItem itemLabel="#{i18n['dailyForecast']}" itemValue="3"/>
+                </h:selectOneMenu>
+
+                <p:outputLabel value="#{i18n['unit']}" for="unit"/>
+                <h:selectOneMenu id="unit" value="#{preferencesBean.unit}">
+                    <f:selectItem itemLabel="Metric" itemValue="metric"/>
+                    <f:selectItem itemLabel="Imperial" itemValue="imperial"/>
+                </h:selectOneMenu>
+
+                <p:outputLabel value="#{i18n['renderedWind']}" for="renderedWind"/>
+                <p:selectBooleanCheckbox id="renderedWind" value="#{preferencesBean.renderedWind}"/>
+
+                <p:outputLabel value="#{i18n['renderedCloudiness']}" for="renderedCloudiness"/>
+                <p:selectBooleanCheckbox id="renderedCloudiness" value="#{preferencesBean.renderedCloudiness}"/>
+
+                <p:outputLabel value="#{i18n['renderedPressure']}" for="renderedPressure"/>
+                <p:selectBooleanCheckbox id="renderedPressure" value="#{preferencesBean.renderedPressure}"/>
+
+                <p:outputLabel value="#{i18n['renderedHumidity']}" for="renderedHumidity"/>
+                <p:selectBooleanCheckbox id="renderedHumidity" value="#{preferencesBean.renderedHumidity}"/>
+
+                <p:outputLabel value="#{i18n['renderedPrecipitation']}" for="renderedPrecipitation"/>
+                <p:selectBooleanCheckbox id="renderedPrecipitation" value="#{preferencesBean.renderedPrecipitation}"/>
+
+                <p:outputLabel value="#{i18n['renderedSunriseSunset']}" for="renderedSunriseSunset"/>
+                <p:selectBooleanCheckbox id="renderedSunriseSunset" value="#{preferencesBean.renderedSunriseSunset}"/>
+
+                <p:outputLabel value="#{i18n['renderedGeocoord']}" for="renderedGeocoord"/>
+                <p:selectBooleanCheckbox id="renderedGeocoord" value="#{preferencesBean.renderedGeocoord}"/>
+
+                <p:outputLabel value="#{i18n['cityName']}" for="cityName"/>
+                <p:inputText id="cityName" value="#{preferencesBean.cityName}"/>
+
+                <f:facet name="footer">
+                    <p:commandButton ajax="false" value="#{i18n['save']}" action="#{preferencesBean.save}" icon="ui-icon-check" />
+                </f:facet>
+            </p:panelGrid>
+        </h:form>
+    </h:body>
+</f:view>
