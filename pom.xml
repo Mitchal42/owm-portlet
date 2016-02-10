@@ -10,7 +10,6 @@
     <properties>
         <liferay.maven.plugin.version>6.2.2</liferay.maven.plugin.version>
         <liferay.version>6.2.2</liferay.version>
-        <liferay.auto.deploy.dir>/home/ivan/liferay/bundle/liferay-portal/deploy</liferay.auto.deploy.dir>
     </properties>
 	<build>
 		<plugins>

@@ -18,19 +18,6 @@
                     #{i18n['preferences']}
                 </f:facet>
 
-                <p:outputLabel value="#{i18n['modeOfView']}" for="modeOfView"/>
-                <h:selectOneMenu id="modeOfView" value="#{preferencesBean.modeOfView}">
-                    <f:selectItem itemLabel="#{i18n['currentWeather']}" itemValue="1"/>
-                    <f:selectItem itemLabel="#{i18n['hourlyForecast']}" itemValue="2"/>
-                    <f:selectItem itemLabel="#{i18n['dailyForecast']}" itemValue="3"/>
-                </h:selectOneMenu>
-
-                <p:outputLabel value="#{i18n['unit']}" for="unit"/>
-                <h:selectOneMenu id="unit" value="#{preferencesBean.unit}">
-                    <f:selectItem itemLabel="Metric" itemValue="metric"/>
-                    <f:selectItem itemLabel="Imperial" itemValue="imperial"/>
-                </h:selectOneMenu>
-
                 <p:outputLabel value="#{i18n['renderedWind']}" for="renderedWind"/>
                 <p:selectBooleanCheckbox id="renderedWind" value="#{preferencesBean.renderedWind}"/>
 
